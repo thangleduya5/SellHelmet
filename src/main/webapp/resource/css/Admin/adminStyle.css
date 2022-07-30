@@ -1,0 +1,134 @@
+.container{
+    margin: 80px 410px;
+    margin-right: 60px;
+    /* border: solid 1px; */
+    padding-top: 12px;
+    font-size: 20px;
+}
+h2{
+    text-align: center;
+}
+form{
+    padding: 12px;
+    margin: 24px 0px;
+    border-radius:  5px;
+    box-shadow: 0 0 2px 2px #343a40;
+}
+.form-group{
+    display: flex;
+    flex-wrap: wrap;
+}
+.form-element{
+    /* border: solid 1px; */
+    width: 50%;
+    margin-bottom: 12px;
+    padding-left: 24px;
+    padding-right: 12px;
+}
+.form-checkbox{
+    width: 100%;
+}
+.label-title{
+    width: 140px;
+    /* border: solid 1px; */
+    display: inline-block;
+}
+form input,
+form select{
+    font-size: 16px;
+    width: 300px;
+    padding: 4px;
+    border-radius:  5px;
+    height: 40px;
+    border: solid 1px;
+}
+.checkbox-group{
+    margin-left: 140px;
+    margin-top: 4px;
+}
+.checkbox-group input{
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+}
+.checkbox-group .checkbox__element{
+    margin-right: 24px;
+}
+
+.form-checkbox label{
+    width: 100%;
+}
+.checkbox__element{
+    display: inline-block;
+    margin-top: 4px;
+}
+button{
+    padding: 8px 24px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 24px;
+    display: flex;
+    width: 300px;
+    justify-content: center;
+}
+button:hover{
+    background-color: blue;
+}
+
+
+
+table{
+	width: 100%;
+    font-size: 20px;
+    text-align: center;
+    border: solid 2px;
+}
+table tr th{
+    text-align: center;
+}
+table td, table th {
+    padding: 4px;
+}
+  
+table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+  
+table tr:hover {
+    background-color: #ddd;
+}
+  
+table th {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: left;
+    background-color: #007bff;
+    color: white;
+}
+table a,
+.link-export{
+    color: white;
+    background-color: #007bff;
+    padding: 4px;
+    border-radius: 5px;
+    display: block;
+    margin: 2px;
+    transition: all 0.5s;
+}
+table a:hover,
+.link-export:hover{
+    background-color: blue;
+}
+
+.link-export{
+	display: inline-block;
+	float: right;
+	padding: 8px;
+	font-size: 24px;
+}
+.link-export__wrapper{
+	height: 48px;
+	margin-bottom: 20px;
+}

@@ -1,0 +1,111 @@
+header{
+    height: 60px;
+    background-color: #343a40;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 100;
+}
+.header__logo{
+    float: left;
+    display: flex;
+    width: 12.2%;
+    margin-left: 36px;
+}
+.header__logo img{
+    width: 100%;
+}
+.header__right{
+    float: right;
+    margin-right: 36px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 36px;
+    color: #cd1818;
+}
+.fa-sign-out-alt{
+    cursor: pointer;
+   	color: yellow;
+}
+.fa-sign-out-alt:hover{
+    color: #960808;
+}
+
+
+nav{
+    height: 100vh;
+    box-shadow: 5px 7px 25px #999;
+    width: 350px;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    font-size: 24px;
+    color: white;
+}
+.task__item{
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: relative;
+    border-radius: 5px;
+    transition: all 0.5s;
+}
+.task__item:first-child a{
+    padding-left: 8px;
+}
+.task__item:first-child{
+    margin-top: 36px;
+    margin-bottom: 36px;
+}
+
+.task__item img{
+    width: 20%;
+    border-radius: 60%;
+    position: relative;
+    transform: translate(0,5%);
+}
+h3{
+    display: inline-block;
+    position: absolute;
+    transform: translate(0,-50%);
+    top: 50%;
+    right: 12px;
+}
+.task__item a{
+    color: white;
+}
+.task__item i{
+    width: 40px;
+}
+.task__item>a{
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    padding-left: 24px;
+}
+.task__item:hover{
+    background-color: #343a40;
+}
+.task__item:hover .list__sub-task{
+    transition: all 0.5s;
+    display: block;
+}
+.list__sub-task{
+    display: none;
+    font-size: 20px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+}
+.list__sub-task a{
+    display: inline-block;
+    margin-left: 52px;
+    padding: 4px 16px;
+    width: 250px;
+    transition: all 0.5s;
+}
+.list__sub-task a:hover{
+    background-color: #cd1818;
+    border-radius: 5px;
+}

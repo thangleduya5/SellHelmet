@@ -1,5 +1,6 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
@@ -19,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity @Table(name = "KHUYENMAI")
-public class KhuyenMai {
+public class KhuyenMai implements Serializable, Comparable<KhuyenMai>{
 
 	@Id @GeneratedValue @Column(name = "MAKM")
 	private int maKM;
@@ -36,7 +37,7 @@ public class KhuyenMai {
 	@ManyToOne @JoinColumn(name = "MANV")
 	private NhanVien nhanVien;
 	
-	@OneToMany(mappedBy = "pk.khuyenMai", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "pk.khuyenMai", fetch = FetchType.LAZY)
 	private Collection<ChiTietKM> chiTietKMs;
 	
 	public KhuyenMai() {
@@ -100,6 +101,11 @@ public class KhuyenMai {
 
 	public void setChiTietKMs(Collection<ChiTietKM> chiTietKMs) {
 		this.chiTietKMs = chiTietKMs;
+	}
+
+	@Override
+	public int compareTo(KhuyenMai o) {
+		return o.ngayBD.compareTo(ngayBD);
 	}
 	
 }

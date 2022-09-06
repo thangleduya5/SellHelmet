@@ -179,7 +179,8 @@
 				</div>
 				<div class="cost">
 					<c:if test="${discount>0}">
-						<span class="cost__discount">- ${discount} %</span> 
+						<span class="cost__discount">- ${discount} %</span>
+						<span class="cost__unit-action"> <fmt:formatNumber type="currency" value="${p.gia *(100-discount)/100}"/> </span>	 
 						<span class="cost__unit"> <fmt:formatNumber type="currency" value="${p.gia}"/> </span>	
 					</c:if>
 					<c:if test="${discount==0}">
@@ -187,7 +188,7 @@
 					</c:if>
 				</div>
 				<label style="margin-left: 100px;">Số lượng:</label>
-				<form:input class="phone__amount" type="number" path="sl"/>
+				<form:input min="1" max="${p.slt}" class="phone__amount" type="number" path="sl"/>
 				<form:errors class="error" path="sl"/>   
 				<form:input type="hidden" path="gia"/>
 				<form:input type="hidden" value="${p.maSP}" path="pk.sanPham.maSP"/>

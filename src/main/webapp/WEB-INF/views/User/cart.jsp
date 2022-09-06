@@ -173,7 +173,12 @@ input {
 
 		</div>
 		<p class="total-pay">Tổng thanh toán: <fmt:formatNumber type="currency" value="${sum}" /></p>
-		<a class="btn__buy" href="Paypal/payment.htm">Đặt hàng</a>
+		
+		<c:if test="${sum != 0 && message == null}">
+			<a class="btn__buy" href="User/payment.htm">Thanh toán</a>		
+		</c:if>
+		<p style="color: red; text-align: center;">${message}</p>
+		
 	</div>
 
 	<header class="footer-app">

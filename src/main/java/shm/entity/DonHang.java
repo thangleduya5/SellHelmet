@@ -1,5 +1,6 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
@@ -19,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity @Table(name = "DONHANG")
-public class DonHang {
+public class DonHang implements Serializable, Comparable<DonHang>{
 	
 	@Id @Column(name = "MADH")
 	private String maDH;
@@ -57,11 +58,8 @@ public class DonHang {
 	@ManyToOne @JoinColumn(name = "MAKH")
 	private KhachHang khachHang;
 	
-	@OneToMany(mappedBy = "pk.donHang", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "pk.donHang", fetch = FetchType.LAZY)
 	private Collection<CTDonHang> ctDonHangs;
-
-	@OneToMany(mappedBy = "donHang", fetch = FetchType.EAGER)
-	private Collection<HoaDon> hoaDons;
 	
 	public DonHang() {
 		
@@ -69,7 +67,7 @@ public class DonHang {
 
 	public DonHang(String maDH, int trangThai, String hoTenNN, String diaChiNN, String sdtNN, String emailNN,
 			Date ngayTao, Date ngayNhan, long tongTien, NhanVien nhanVienD, NhanVien nhanVienG, KhachHang khachHang,
-			Collection<CTDonHang> ctDonHangs, Collection<HoaDon> hoaDons) {
+			Collection<CTDonHang> ctDonHangs) {
 		super();
 		this.maDH = maDH;
 		this.trangThai = trangThai;
@@ -84,7 +82,6 @@ public class DonHang {
 		this.nhanVienG = nhanVienG;
 		this.khachHang = khachHang;
 		this.ctDonHangs = ctDonHangs;
-		this.hoaDons = hoaDons;
 	}
 
 	public String getMaDH() {
@@ -191,12 +188,9 @@ public class DonHang {
 		this.ctDonHangs = ctDonHangs;
 	}
 
-	public Collection<HoaDon> getHoaDons() {
-		return hoaDons;
-	}
-
-	public void setHoaDons(Collection<HoaDon> hoaDons) {
-		this.hoaDons = hoaDons;
+	@Override
+	public int compareTo(DonHang o) {
+		return o.ngayTao.compareTo(ngayTao);
 	}
 
 }

@@ -1,5 +1,6 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -11,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity @Table(name = "QUYEN")
-public class Quyen {
+public class Quyen implements Serializable{
 
 	@Id @GeneratedValue @Column(name = "MAQUYEN")
 	private int maQuyen;
@@ -19,7 +20,7 @@ public class Quyen {
 	@Column(name = "TENQUYEN")
 	private String tenQuyen;
 	
-	@OneToMany(mappedBy = "quyen", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "quyen", fetch = FetchType.LAZY)
 	private Collection<TaiKhoan> taiKhoans;
 	
 	public Quyen() {

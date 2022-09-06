@@ -1,7 +1,9 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,8 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity @Table(name = "NHACUNGCAP")
-public class NhaCungCap {
+public class NhaCungCap implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id @Column(name = "MANCC")
 	private String maNCC;
@@ -27,10 +36,12 @@ public class NhaCungCap {
 	@Column(name = "EMAIL")
 	private String email;
 	
-	@OneToMany(mappedBy = "nhaCungCap", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "nhaCungCap", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Collection<PhieuDat> phieuDats;
 	
-	@OneToMany(mappedBy = "nhaCungCap", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "nhaCungCap", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Collection<SanPham> sanPhams;
 	
 	public NhaCungCap() {

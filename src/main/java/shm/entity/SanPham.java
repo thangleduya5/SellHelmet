@@ -1,5 +1,6 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -15,17 +16,15 @@ import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity @Table(name = "SANPHAM")
-@NamedStoredProcedureQueries({
-	@NamedStoredProcedureQuery(name = "hotSale", procedureName = "KhuyenMaiKhung", resultClasses = SanPham.class, 
-		parameters = {@StoredProcedureParameter(mode = ParameterMode.IN, type = Integer.class, name = "GIAMGIAKHUNG")}),
-	@NamedStoredProcedureQuery(name = "hotProduct", procedureName = "SPHot", resultClasses = SanPham.class, 
-		parameters = {@StoredProcedureParameter(mode = ParameterMode.IN, type = Integer.class, name = "SOTHANG")}),
-	@NamedStoredProcedureQuery(name = "NewProduct", procedureName = "SPMoi", resultClasses = SanPham.class),
-	@NamedStoredProcedureQuery(name = "FindProductByName", procedureName = "TimKiemSPTheoTen", resultClasses = SanPham.class, 
-		parameters = {@StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "TENSP")})
-		})
-public class SanPham {
+public class SanPham implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id @Column(name = "MASP")
 	private String maSP;
@@ -54,16 +53,20 @@ public class SanPham {
 	@ManyToOne @JoinColumn(name = "MANCC")
 	private NhaCungCap nhaCungCap;
 	
-	@OneToMany(mappedBy = "pk.sanPham", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "pk.sanPham", fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Collection<CTPhieuDat> ctPhieuDats;
 	
-	@OneToMany(mappedBy = "pk.sanPham", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "pk.sanPham", fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Collection<CTDonHang> ctDonHangs;
-//	
-	@OneToMany(mappedBy = "pk.sanPham", fetch = FetchType.EAGER)
-	private Collection<CTPhieuNhap> ctPhieuNhaps;
 	
-	@OneToMany(mappedBy = "pk.sanPham", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "pk.sanPham", fetch = FetchType.LAZY)
+	@JsonBackReference
+	private Collection<CTPhieuNhap> ctPhieuNhaps;
+
+	@OneToMany(mappedBy = "pk.sanPham", fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Collection<ChiTietKM> chiTietKMs;
 	
 	public SanPham() {
@@ -191,6 +194,12 @@ public class SanPham {
 
 	public void setChiTietKMs(Collection<ChiTietKM> chiTietKMs) {
 		this.chiTietKMs = chiTietKMs;
+	}
+
+	@Override
+	public String toString() {
+		return "SanPham [maSP=" + maSP + ", tenSP=" + tenSP + ", moTa=" + moTa + ", hinhAnh=" + hinhAnh + ", gia=" + gia
+				+ ", slt=" + slt + ", spMoi=" + spMoi +  "] " + loaiSP.getTenLoai() + nhaCungCap.getMaNCC();
 	}
 	
 }

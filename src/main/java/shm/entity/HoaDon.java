@@ -1,5 +1,6 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
@@ -19,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity @Table(name = "HOADON")
-public class HoaDon {
+public class HoaDon implements Serializable{
 
 	@Id @Column(name = "MAHD")
 	private String maHD;
@@ -37,7 +38,7 @@ public class HoaDon {
 	@JoinColumn(name = "MADH", unique = true)
 	private DonHang donHang;
 	
-	@OneToMany(mappedBy = "hoaDon", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "hoaDon", fetch = FetchType.LAZY)
 	private Collection<PhieuTra> phieuTras;
 	
 	public HoaDon() {

@@ -21,8 +21,9 @@
 		
 		<!-- > Chỉ lọc các URL theo path -->
 	<mvc:interceptors> 
-		<mvc:interceptor>
+ 		<mvc:interceptor>
 			<mvc:mapping path="/Admin/**"/>
+			<mvc:mapping path="/pdf/**"/>
 			<mvc:exclude-mapping path="/Admin/login.htm"/>
 			<bean class="shm.interceptor.LoggerInterceptor" />
 		</mvc:interceptor>

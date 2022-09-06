@@ -1,5 +1,6 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -9,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity @Table(name = "LOAISP")
-public class LoaiSP {
+public class LoaiSP implements Serializable{
 	
 	@Id @Column(name = "MALOAI")
 	private String maLoai;
@@ -19,6 +22,7 @@ public class LoaiSP {
 	private String tenLoai;
 	
 	@OneToMany(mappedBy = "loaiSP", fetch = FetchType.EAGER)
+	@JsonBackReference
 	private Collection<SanPham> sanPhams;
 	
 	public LoaiSP() {

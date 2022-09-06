@@ -25,7 +25,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
 		
 	<bean id="path" class="shm.model.BasePath">
-		<property name="pathName" value="D:\PTIT_HCM\Semester_7\Web_Programming\Doan\BuyPhone\src\main\webapp\resource\img\imgPhone" />
+		<property name="pathName" value="D:\PTIT_HCM\ThucTap\SellHelmet\src\main\webapp\resource\img\imgProduct" />
 	</bean>
    	
    	<!-- Cấu hình package chứa các controller -->

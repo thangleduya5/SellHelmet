@@ -115,13 +115,15 @@ input {
 				<div class="cart__item">
 					<div class="cart-detail__item"><label >${b.maDH}</label></div>	
 					<div class="cart-detail__item"><label >
-						<c:if test="${b.trangThai==1}">Chờ xác nhận</c:if>
+						<c:if test="${b.trangThai==1 && b.nhanVienD == NULL}">Chờ xác nhận</c:if>
+						<c:if test="${b.trangThai==1 && b.nhanVienD != NULL}">Đang giao</c:if>
 						<c:if test="${b.trangThai==2}">Đã hoàn thành</c:if>
+						<c:if test="${b.trangThai==-1}">Đã hủy</c:if>
 					</label></div>					
 					<div class="cart-detail__item"><label >${b.hoTenNN}</label></div>
 					<div class="cart-detail__item"><label >${b.sdtNN}</label></div>
-					<div class="cart-detail__item"><label >${b.ngayTao}</label></div>
-					<div class="cart-detail__item"><label >${b.ngayNhan}</label></div>
+					<div class="cart-detail__item"><label ><fmt:formatDate pattern = "dd-MM-yyyy" value = "${b.ngayTao}" /></label></div>
+					<div class="cart-detail__item"><label ><fmt:formatDate pattern = "dd-MM-yyyy" value = "${b.ngayNhan}" /></label></div>
 
 					<div class="cart-detail__item"><fmt:formatNumber type = "currency" value = "${b.tongTien}" /></div>
 					<div class="cart-detail__item"><label >${b.nhanVienG.hoTen}</label></div>

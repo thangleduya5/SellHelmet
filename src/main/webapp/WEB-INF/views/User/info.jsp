@@ -138,22 +138,22 @@ button:hover {
             <form:form class="info-form" action="User/info.htm" modelAttribute="customer">
                 <div class="form__item">
                     <label for="">Họ và tên</label>
-					<form:input type="text" path="hoTen" placeholder="Họ và tên"/> 
+					<form:input type="text" path="hoTen" placeholder="Họ và tên" required="required" maxlength="30" /> 
 					<form:errors class="error" path="hoTen"/>                
 				</div>
                 <div class="form__item">
                     <label for="">Số điện thoại</label>
-					<form:input type="number" path="sdt" placeholder="Số điện thoại"/> 
+					<form:input type="number" path="sdt" placeholder="Số điện thoại" required="required" minlength="10" maxlength="10" /> 
 					<form:errors class="error" path="sdt"/>
                 </div>
                 <div class="form__item">
                     <label for="">Email</label>
-					<form:input type="email" path="email" placeholder="Email"/> 
+					<form:input type="email" path="email" placeholder="Email" required="required" maxlength="30"/> 
 					<form:errors class="error" path="email"/>
 			    </div>
                 <div class="form__item">
                     <label for="">Địa chỉ</label>
-					<form:input type="text" path="diaChi" placeholder="Địa chỉ"/>
+					<form:input type="text" path="diaChi" placeholder="Địa chỉ" required="required" maxlength="100" />
 					<form:errors class="error" path="diaChi"/>                
 				</div>
                 <form:input type="hidden" path="maKH"/>

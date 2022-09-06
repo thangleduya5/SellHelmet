@@ -1,9 +1,12 @@
 package shm.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -15,9 +18,9 @@ import javax.persistence.Table;
         joinColumns = @JoinColumn(name = "MAKM")),
     @AssociationOverride(name = "pk.sanPham", 
         joinColumns = @JoinColumn(name = "MASP")) })
-public class ChiTietKM {
+public class ChiTietKM implements Serializable{
 	
-	@Embedded @Id
+	@EmbeddedId
 	ChiTietKMPK pk;
 	
 	@Column(name = "GIAMGIA")
@@ -33,11 +36,11 @@ public class ChiTietKM {
 		this.giamGia = giamGia;
 	}
 
-	public ChiTietKMPK getChiTietKMPK() {
+	public ChiTietKMPK getPk() {
 		return pk;
 	}
 
-	public void setChiTietKMPK(ChiTietKMPK pk) {
+	public void setPk(ChiTietKMPK pk) {
 		this.pk = pk;
 	}
 

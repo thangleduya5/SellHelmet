@@ -45,7 +45,7 @@ nav{
     color: white;
 }
 .task__item{
-    margin-top: 20px;
+    margin-top: 12px;
     margin-left: 5%;
     margin-right: 5%;
     position: relative;
@@ -56,8 +56,8 @@ nav{
     padding-left: 8px;
 }
 .task__item:first-child{
-    margin-top: 36px;
-    margin-bottom: 36px;
+    margin-top: 24px;
+    margin-bottom: 16px;
 }
 
 .task__item img{

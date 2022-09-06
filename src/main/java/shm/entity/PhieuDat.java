@@ -1,5 +1,6 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
@@ -19,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity @Table(name = "PHIEUDAT")
-public class PhieuDat {
+public class PhieuDat implements Serializable{
 	
 	@Id @Column(name = "MAPD")
 	private String maPD;
@@ -33,25 +34,24 @@ public class PhieuDat {
 	@ManyToOne @JoinColumn(name = "MANV")
 	private NhanVien nhanVien;
 	
-	@OneToMany(mappedBy = "pk.phieuDat", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "pk.phieuDat", fetch = FetchType.LAZY)
 	private Collection<CTPhieuDat> ctPhieuDats;
 	
-	@OneToMany(mappedBy = "phieuDat", fetch = FetchType.EAGER)
-	private Collection<PhieuNhap> phieuNhaps;
-	
+	@OneToOne(mappedBy = "phieuDat", fetch = FetchType.LAZY)
+	private PhieuNhap phieuNhap;
+		
 	public PhieuDat() {
 		
 	}
 
 	public PhieuDat(String maPD, Date ngayTao, NhaCungCap nhaCungCap, NhanVien nhanVien,
-			Collection<CTPhieuDat> ctPhieuDats, Collection<PhieuNhap> phieuNhaps) {
+			Collection<CTPhieuDat> ctPhieuDats) {
 		super();
 		this.maPD = maPD;
 		this.ngayTao = ngayTao;
 		this.nhaCungCap = nhaCungCap;
 		this.nhanVien = nhanVien;
 		this.ctPhieuDats = ctPhieuDats;
-		this.phieuNhaps = phieuNhaps;
 	}
 
 	public String getMaPD() {
@@ -94,12 +94,12 @@ public class PhieuDat {
 		this.ctPhieuDats = ctPhieuDats;
 	}
 
-	public Collection<PhieuNhap> getPhieuNhaps() {
-		return phieuNhaps;
+	public PhieuNhap getPhieuNhap() {
+		return phieuNhap;
 	}
 
-	public void setPhieuNhaps(Collection<PhieuNhap> phieuNhaps) {
-		this.phieuNhaps = phieuNhaps;
+	public void setPhieuNhap(PhieuNhap phieuNhap) {
+		this.phieuNhap = phieuNhap;
 	}
 
 }

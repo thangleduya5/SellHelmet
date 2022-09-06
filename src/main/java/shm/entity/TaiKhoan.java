@@ -1,5 +1,6 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity @Table(name = "TAIKHOAN")
-public class TaiKhoan {
+public class TaiKhoan implements Serializable{
 
 	@Id @Column(name = "TENDN")
 	private String tenDN;
@@ -24,24 +25,15 @@ public class TaiKhoan {
 	@ManyToOne @JoinColumn(name = "MAQUYEN")
 	private Quyen quyen;
 		
-	@OneToMany(mappedBy = "taiKhoan", fetch = FetchType.EAGER)
-	private Collection<KhachHang> khachHangs;
-	
-	@OneToMany(mappedBy = "taiKhoan", fetch = FetchType.EAGER)
-	private Collection<NhanVien> nhanViens;
-	
 	public TaiKhoan() {
 		
 	}
 
-	public TaiKhoan(String tenDN, String matKhau, Quyen quyen, Collection<KhachHang> khachHangs,
-			Collection<NhanVien> nhanViens) {
+	public TaiKhoan(String tenDN, String matKhau, Quyen quyen) {
 		super();
 		this.tenDN = tenDN;
 		this.matKhau = matKhau;
 		this.quyen = quyen;
-		this.khachHangs = khachHangs;
-		this.nhanViens = nhanViens;
 	}
 
 	public String getTenDN() {
@@ -66,22 +58,6 @@ public class TaiKhoan {
 
 	public void setQuyen(Quyen quyen) {
 		this.quyen = quyen;
-	}
-
-	public Collection<KhachHang> getKhachHangs() {
-		return khachHangs;
-	}
-
-	public void setKhachHangs(Collection<KhachHang> khachHangs) {
-		this.khachHangs = khachHangs;
-	}
-
-	public Collection<NhanVien> getNhanViens() {
-		return nhanViens;
-	}
-
-	public void setNhanViens(Collection<NhanVien> nhanViens) {
-		this.nhanViens = nhanViens;
 	}
 
 }

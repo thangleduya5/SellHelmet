@@ -1,2 +1,10 @@
 eclipse.preferences.version=1
+encoding//src/main/java/shm/controller/AdminController.java=UTF-8
+encoding//src/main/java/shm/controller/PDFController.java=UTF-8
 encoding//src/main/java/shm/controller/UserController.java=UTF-8
+encoding//src/main/java/shm/pdf/BillPDFView.java=UTF-8
+encoding//src/main/java/shm/pdf/ProductPDFView.java=UTF-8
+encoding//src/main/java/shm/pdf/StaffPDFView.java=UTF-8
+encoding//src/main/java/shm/pdf/StatisticPDFView.java=UTF-8
+encoding//src/main/java/shm/pdf/SupplierPDFView.java=UTF-8
+encoding//src/main/webapp/resource/javascript/index.js=UTF-8

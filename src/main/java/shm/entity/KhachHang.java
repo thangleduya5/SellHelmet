@@ -1,5 +1,6 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity @Table(name = "KHACHHANG")
-public class KhachHang {
+public class KhachHang implements Serializable{
 
 	@Id @Column(name = "MAKH")
 	private String maKH;
@@ -36,10 +37,10 @@ public class KhachHang {
 	@Column(name = "TRANGTHAI")
 	private int trangThai;
 	
-	@ManyToOne @JoinColumn(name = "TENDN")
+	@OneToOne @JoinColumn(name = "TENDN")
 	private TaiKhoan taiKhoan;
 	
-	@OneToMany(mappedBy = "khachHang", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
 	private Collection<DonHang> donHangs;
 	
 	public KhachHang() {
@@ -131,5 +132,6 @@ public class KhachHang {
 	public void setDonHangs(Collection<DonHang> donHangs) {
 		this.donHangs = donHangs;
 	}
+	
 	
 }

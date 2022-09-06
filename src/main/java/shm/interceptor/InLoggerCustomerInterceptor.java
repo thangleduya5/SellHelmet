@@ -12,7 +12,7 @@ public class InLoggerCustomerInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("PreHandel, Trước khi vào Controller");
+		System.out.println("PreHandel, Truoc khi vao trang user");
 
 		HttpSession ss = request.getSession();
 
@@ -28,13 +28,13 @@ public class InLoggerCustomerInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("PostHandel, Sau khi vào Controller");
+		System.out.println("PostHandel, Sau khi vao trang user");
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		System.out.println("CompleteHandel, sau khi View được show.");
+		System.out.println("CompleteHandel");
 	}
 
 }

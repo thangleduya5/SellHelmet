@@ -43,7 +43,8 @@
 	font-size: 28px;
 }
 
-.login-app input {
+.login-app input,
+.login-app select{
 	width: 100%;
 	margin-top: 12px;
 	font-size: 16px;
@@ -152,18 +153,20 @@
 
 		<form:form action="User/register.htm" class="login-app" modelAttribute="customer">
 			<h3 class="title">Đăng ký</h3>			
-			<form:input class="input-top" type="text" path="hoTen" placeholder="Họ và tên"/> 
-			<form:errors class="error" path="hoten"/>
-			<form:input type="number" path="sdt" placeholder="Số điện thoại"/> 
+			<form:input class="input-top" type="text" path="hoTen" placeholder="Họ và tên" required="required" maxlength="30"/> 
+			<form:errors class="error" path="hoTen"/>
+			<form:select path="gioiTinh" id="sex">
+				<option value="Nam">Nam</option>
+				<option value="Nữ">Nữ</option>
+			</form:select> 
+			<form:input type="number" path="sdt" placeholder="Số điện thoại" required="required" maxlength="10"/> 
 			<form:errors class="error" path="sdt"/>
-			<form:input type="email" path="email" placeholder="Email"/> 
+			<form:input type="email" path="email" placeholder="Email" required="required" maxlength="20"/> 
 			<form:errors class="error" path="email"/>
-			<form:input type="text" path="diaChi" placeholder="Địa chỉ"/>
+			<form:input type="text" path="diaChi" placeholder="Địa chỉ" required="required" maxlength="100"/>
 			<form:errors class="error" path="diaChi"/>
-			<form:input type="text" path="userName" placeholder="Tên đăng nhập"/>
-			<form:errors class="error" name="idCustomer"/>
-			<form:input class="input-bottom" type="password" path="passwordCustomer" placeholder="Mật khẩu"/>
-			<form:errors class="error" path="passwordCustomer"/>
+			<input type="text" name="userName" placeholder="Tên đăng nhập" required="required" maxlength="10"/>
+			<input class="input-bottom" type="password" name="pass" placeholder="Mật khẩu" required="required" maxlength="16"/>
 			<form:input type="hidden" path="maKH" value="1"/>
 			<form:input type="hidden" path="trangThai" value="1"/>
 			<button class="btn" name="btnAdd">Xác nhận</button>

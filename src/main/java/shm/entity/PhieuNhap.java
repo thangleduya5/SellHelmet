@@ -1,5 +1,6 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
@@ -19,10 +20,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity @Table(name = "PHIEUNHAP")
-public class PhieuNhap {
+public class PhieuNhap implements Serializable{
 	
 	@Id @Column(name = "MAPN")
-	private String maPD;
+	private String maPN;
 	
 	@Column(name = "NGAYTAO") @Temporal(TemporalType.DATE) @DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date ngayTao;
@@ -33,20 +34,20 @@ public class PhieuNhap {
 	@ManyToOne @JoinColumn(name = "MANV")
 	private NhanVien nhanVien;
 	
-	@OneToMany(mappedBy = "pk.phieuNhap", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "pk.phieuNhap", fetch = FetchType.LAZY)
 	private Collection<CTPhieuNhap> ctPhieuNhaps;
 	
-	@ManyToOne @JoinColumn(name = "MAPD")
+	@OneToOne @JoinColumn(name = "MAPD", unique = true)
 	private PhieuDat phieuDat;
 	
 	public PhieuNhap() {
 		
 	}
 
-	public PhieuNhap(String maPD, Date ngayTao, long tongTien, NhanVien nhanVien, Collection<CTPhieuNhap> ctPhieuNhaps,
+	public PhieuNhap(String maPN, Date ngayTao, long tongTien, NhanVien nhanVien, Collection<CTPhieuNhap> ctPhieuNhaps,
 			PhieuDat phieuDat) {
 		super();
-		this.maPD = maPD;
+		this.maPN = maPN;
 		this.ngayTao = ngayTao;
 		this.tongTien = tongTien;
 		this.nhanVien = nhanVien;
@@ -54,12 +55,12 @@ public class PhieuNhap {
 		this.phieuDat = phieuDat;
 	}
 
-	public String getMaPD() {
-		return maPD;
+	public String getMaPN() {
+		return maPN;
 	}
 
-	public void setMaPD(String maPD) {
-		this.maPD = maPD;
+	public void setMaPN(String maPN) {
+		this.maPN = maPN;
 	}
 
 	public Date getNgayTao() {

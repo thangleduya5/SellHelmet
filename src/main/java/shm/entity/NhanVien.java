@@ -1,5 +1,6 @@
 package shm.entity;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity @Table(name = "NHANVIEN")
-public class NhanVien {
+public class NhanVien implements Serializable{
 
 	@Id @Column(name = "MANV")
 	private String maNV;
@@ -33,28 +34,28 @@ public class NhanVien {
 	@Column(name = "SDT")
 	private String sdt;
 		
-	@ManyToOne @JoinColumn(name = "TENDN")
+	@OneToOne @JoinColumn(name = "TENDN")
 	private TaiKhoan taiKhoan;
 	
-	@OneToMany(mappedBy = "nhanVienD", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "nhanVienD", fetch = FetchType.LAZY)
 	private Collection<DonHang> donHangDs;
 	
-	@OneToMany(mappedBy = "nhanVienG", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "nhanVienG", fetch = FetchType.LAZY)
 	private Collection<DonHang> donHangGs;
 	
-	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY)
 	private Collection<HoaDon> hoaDons;
 	
-	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY)
 	private Collection<PhieuTra> phieuTras;
 	
-	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY)
 	private Collection<PhieuDat> phieuDats;
 
-	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY)
 	private Collection<PhieuNhap> phieuNhaps;
 //	
-	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY)
 	private Collection<KhuyenMai> khuyenMais;
 	
 	public NhanVien() {

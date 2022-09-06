@@ -1,9 +1,12 @@
 package shm.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,9 +20,9 @@ import javax.persistence.Table;
         joinColumns = @JoinColumn(name = "MASP")),
     @AssociationOverride(name = "pk.donHang", 
         joinColumns = @JoinColumn(name = "MADH")) })
-public class CTDonHang {
+public class CTDonHang implements Serializable{
 	
-	@Embedded @Id
+	@EmbeddedId
 	CTDonHangPK pk;
 	
 	@Column(name = "GIA")

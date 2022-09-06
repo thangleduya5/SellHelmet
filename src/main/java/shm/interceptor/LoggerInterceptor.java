@@ -12,7 +12,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("PreHandel, Trước khi vào Controller");
+		System.out.println("PreHandel, Truoc khi vao trang admin");
 
 		HttpSession ss = request.getSession();
 
@@ -28,7 +28,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("PostHandel, Sau khi vào Controller");
+		System.out.println("PostHandel, Sau khi v�o trang admin");
 	}
 
 	@Override

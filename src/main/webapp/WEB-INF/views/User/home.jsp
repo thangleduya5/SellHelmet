@@ -261,11 +261,11 @@
 						<label class="label-title" for="">Thương hiệu (Nhà cung cấp): </label>
 						<div class="checkbox-group">
 							<div class="checkbox__element">
-								<input id="check__brand-all" type="checkbox" name="nameBrand" value="all" checked="checked"> Tất cả
+								<input id="check__brand-all" type="checkbox" name="IdBrand" value="all" checked="checked"> Tất cả
 							</div>
 							<c:forEach var="b" items="${sessionScope.brands}">
 								<div class="checkbox__element">
-									<input class="check__brand-item" type="checkbox" name="nameBrand" value="${b.tenNCC}"> ${b.tenNCC}
+									<input class="check__brand-item" type="checkbox" name="IdBrand" value="${b.maNCC}"> ${b.tenNCC}
 								</div>
 							</c:forEach>
 						</div>
@@ -297,11 +297,11 @@
 						<label class="label-title" for="">Chủng loại: </label>
 						<div class="checkbox-group">
 							<div class="checkbox__element">
-								<input id="check__brand-all" type="checkbox" name="nameCategory" value="all" checked="checked"> Tất cả
+								<input id="check__type-all" type="checkbox" name="IdCategory" value="all" checked="checked"> Tất cả
 							</div>
 							<c:forEach var="b" items="${sessionScope.categorys}">
 								<div class="checkbox__element">
-									<input class="check__brand-item" type="checkbox" name="namecategory" value="${b.tenLoai}"> ${b.tenLoai}
+									<input class="check__type-item" type="checkbox" name="IdCategory" value="${b.maLoai}"> ${b.tenLoai}
 								</div>
 							</c:forEach>
 						</div>
@@ -345,16 +345,23 @@
 					
 					<c:forEach var="p" items="${pagedListHolder.pageList}">
 					<div class="card__item">
-						<a href="User/helmet/${p.maSP}.htm" class="card-item__link"> <img
-							src="resource/img/imgProduct/${p.hinhAnh}" alt="" class="card-item__img">
+						<a href="User/helmet/${p.sanPham.maSP}.htm" class="card-item__link"> <img
+							src="resource/img/imgProduct/${p.sanPham.hinhAnh}" alt="" class="card-item__img">
 						</a> 
-						<a href="User/helmet/${p.maSP}.htm" class="card-item__name">${p.tenSP}</a>
+						<a href="User/helmet/${p.sanPham.maSP}.htm" class="card-item__name">${p.sanPham.tenSP}</a>
 						<div class="card-item__cost">
-							<p class="cost__unit-actiont"> <fmt:formatNumber type="currency" value="${p.gia}" /></p>			
+						<c:if test="${p.discount>0}">
+							<span class="cost__discount">- ${p.discount} %</span> 
+							<span class=""> <fmt:formatNumber type="currency" value="${p.sanPham.gia * (100-p.discount) /100}"/> </span>				
+							<span class="cost__unit"> <fmt:formatNumber type="currency" value="${p.sanPham.gia}"/> </span>				
+						</c:if>
+						<c:if test="${p.discount==0}">
+							<span class="cost__unit-action"> <fmt:formatNumber type="currency" value="${p.sanPham.gia}"/> </span>				
+						</c:if>						
 						</div>
 						<div class="card-item__btn">
-							<a href="User/helmet/${p.maSP}.htm" class="btn__buy btn">MUA NGAY</a> <a
-								href="User/helmet/${p.maSP}.htm?linkAdd" class="btn__add-cart btn">THÊM VÀO GIỎ</a>
+							<a href="User/helmet/${p.sanPham.maSP}.htm" class="btn__buy btn">MUA NGAY</a> <a
+								href="User/helmet/${p.sanPham.maSP}.htm?linkAdd" class="btn__add-cart btn">THÊM VÀO GIỎ</a>
 						</div>
 					</div>
 					</c:forEach>
@@ -365,16 +372,23 @@
 				
 					<c:forEach var="p" items="${products}">
 					<div class="card__item">
-						<a href="User/helmet/${p.maSP}.htm" class="card-item__link"> <img
-							src="resource/img/imgProduct/${p.hinhAnh}" alt="" class="card-item__img">
+						<a href="User/helmet/${p.sanPham.maSP}.htm" class="card-item__link"> <img
+							src="resource/img/imgProduct/${p.sanPham.hinhAnh}" alt="" class="card-item__img">
 						</a> 
-						<a href="User/helmet/${p.maSP}.htm" class="card-item__name">${p.tenSP}</a>
+						<a href="User/helmet/${p.sanPham.maSP}.htm" class="card-item__name">${p.sanPham.tenSP}</a>
 						<div class="card-item__cost">
-							<p class="cost__unit-actiont"> <fmt:formatNumber type="currency" value="${p.gia}" /></p>			
+						<c:if test="${p.discount>0}">
+							<span class="cost__discount">- ${p.discount} %</span> 
+							<span class="cost__unit"> <fmt:formatNumber type="currency" value="${p.sanPham.gia}"/> </span>				
+							<span class=""> <fmt:formatNumber type="currency" value="${p.sanPham.gia * (100-p.discount) /100}"/> </span>				
+						</c:if>
+						<c:if test="${p.discount==0}">
+							<span class="cost__unit-action"> <fmt:formatNumber type="currency" value="${p.sanPham.gia}"/> </span>				
+						</c:if>						
 						</div>
 						<div class="card-item__btn">
-							<a href="User/helmet/${p.maSP}.htm" class="btn__buy btn">MUA NGAY</a> <a
-								href="User/helmet/${p.maSP}.htm?linkAdd" class="btn__add-cart btn">THÊM VÀO GIỎ</a>
+							<a href="User/helmet/${p.sanPham.maSP}.htm" class="btn__buy btn">MUA NGAY</a> <a
+								href="User/helmet/${p.sanPham.maSP}.htm?linkAdd" class="btn__add-cart btn">THÊM VÀO GIỎ</a>
 						</div>
 					</div>
 					</c:forEach>
@@ -387,22 +401,23 @@
 			
 				<c:forEach var="p" items="${sessionScope.newProducts}">
 					<div class="card__item">
-						<a href="User/helmet/${p.key.maSP}.htm" class="card-item__link"> <img
-							src="resource/img/imgProduct/${p.key.hinhAnh}" alt="" class="card-item__img">
+						<a href="User/helmet/${p.sanPham.maSP}.htm" class="card-item__link"> <img
+							src="resource/img/imgProduct/${p.sanPham.hinhAnh}" alt="" class="card-item__img">
 						</a> 
-						<a href="User/helmet/${p.key.maSP}.htm" class="card-item__name">${p.key.tenSP}</a>
+						<a href="User/helmet/${p.sanPham.maSP}.htm" class="card-item__name">${p.sanPham.tenSP}</a>
 						<div class="card-item__cost">
-						<c:if test="${p.value>0}">
-							<span class="cost__discount">- ${p.value} %</span> 
-							<span class="cost__unit"> <fmt:formatNumber type="currency" value="${p.key.gia}"/> </span>				
+						<c:if test="${p.discount>0}">
+							<span class="cost__discount">- ${p.discount} %</span> 
+							<span class="cost__unit"> <fmt:formatNumber type="currency" value="${p.sanPham.gia}"/> </span>				
+							<span class=""> <fmt:formatNumber type="currency" value="${p.sanPham.gia * (100-p.discount) /100}"/> </span>											
 						</c:if>
-						<c:if test="${p.value==0}">
-							<span class="cost__unit-action"> <fmt:formatNumber type="currency" value="${p.key.gia}"/> </span>				
+						<c:if test="${p.discount==0}">
+							<span class="cost__unit-action"> <fmt:formatNumber type="currency" value="${p.sanPham.gia}"/> </span>				
 						</c:if>						
 						</div>
 						<div class="card-item__btn">
-							<a href="User/helmet/${p.key.maSP}.htm" class="btn__buy btn">MUA NGAY</a> <a
-								href="User/helmet/${p.key.maSP}.htm?linkAdd" class="btn__add-cart btn">THÊM VÀO GIỎ</a>
+							<a href="User/helmet/${p.sanPham.maSP}.htm" class="btn__buy btn">MUA NGAY</a> <a
+								href="User/helmet/${p.sanPham.maSP}.htm?linkAdd" class="btn__add-cart btn">THÊM VÀO GIỎ</a>
 						</div>
 					</div>
 				</c:forEach>
@@ -413,22 +428,23 @@
 			
 				<c:forEach var="p" items="${sessionScope.hotProducts}">
 					<div class="card__item">
-						<a href="User/helmet/${p.key.maSP}.htm" class="card-item__link"> <img
-							src="resource/img/imgProduct/${p.key.hinhAnh}" alt="" class="card-item__img">
+						<a href="User/helmet/${p.sanPham.maSP}.htm" class="card-item__link"> <img
+							src="resource/img/imgProduct/${p.sanPham.hinhAnh}" alt="" class="card-item__img">
 						</a> 
-						<a href="User/helmet/${p.key.maSP}.htm" class="card-item__name">${p.key.tenSP}</a>
+						<a href="User/helmet/${p.sanPham.maSP}.htm" class="card-item__name">${p.sanPham.tenSP}</a>
 						<div class="card-item__cost">
-						<c:if test="${p.value>0}">
-							<span class="cost__discount">- ${p.value} %</span> 
-							<span class="cost__unit"> <fmt:formatNumber type="currency" value="${p.key.gia}"/> </span>				
+						<c:if test="${p.discount>0}">
+							<span class="cost__discount">- ${p.discount} %</span> 
+							<span class="cost__unit"> <fmt:formatNumber type="currency" value="${p.sanPham.gia}"/> </span>				
+							<span class=""> <fmt:formatNumber type="currency" value="${p.sanPham.gia * (100-p.discount) /100}"/> </span>										
 						</c:if>
-						<c:if test="${p.value==0}">
-							<span class="cost__unit-action"> <fmt:formatNumber type="currency" value="${p.key.gia}"/> </span>				
+						<c:if test="${p.discount==0}">
+							<span class="cost__unit-action"> <fmt:formatNumber type="currency" value="${p.sanPham.gia}"/> </span>				
 						</c:if>						
 						</div>
 						<div class="card-item__btn">
-							<a href="User/helmet/${p.key.maSP}.htm" class="btn__buy btn">MUA NGAY</a> <a
-								href="User/helmet/${p.key.maSP}.htm?linkAdd" class="btn__add-cart btn">THÊM VÀO GIỎ</a>
+							<a href="User/helmet/${p.sanPham.maSP}.htm" class="btn__buy btn">MUA NGAY</a> <a
+								href="User/helmet/${p.sanPham.maSP}.htm?linkAdd" class="btn__add-cart btn">THÊM VÀO GIỎ</a>
 						</div>
 					</div>
 				</c:forEach>
@@ -439,22 +455,23 @@
 			
 				<c:forEach var="p" items="${sessionScope.hotSaleProducts}">
 					<div class="card__item">
-						<a href="User/helmet/${p.key.maSP}.htm" class="card-item__link"> <img
-							src="resource/img/imgProduct/${p.key.hinhAnh}" alt="" class="card-item__img">
+						<a href="User/helmet/${p.sanPham.maSP}.htm" class="card-item__link"> <img
+							src="resource/img/imgProduct/${p.sanPham.hinhAnh}" alt="" class="card-item__img">
 						</a> 
-						<a href="User/helmet/${p.key.maSP}.htm" class="card-item__name">${p.key.tenSP}</a>
+						<a href="User/helmet/${p.sanPham.maSP}.htm" class="card-item__name">${p.sanPham.tenSP}</a>
 						<div class="card-item__cost">
-						<c:if test="${p.value>0}">
-							<span class="cost__discount">- ${p.value} %</span> 
-							<span class="cost__unit"> <fmt:formatNumber type="currency" value="${p.key.gia}"/> </span>				
+						<c:if test="${p.discount>0}">
+							<span class="cost__discount">- ${p.discount} %</span> 
+							<span class="cost__unit"> <fmt:formatNumber type="currency" value="${p.sanPham.gia}"/> </span>				
+							<span class=""> <fmt:formatNumber type="currency" value="${p.sanPham.gia * (100-p.discount) /100}"/> </span>				
 						</c:if>
-						<c:if test="${p.value==0}">
-							<span class="cost__unit-action"> <fmt:formatNumber type="currency" value="${p.key.gia}"/> </span>				
+						<c:if test="${p.discount==0}">
+							<span class="cost__unit-action"> <fmt:formatNumber type="currency" value="${p.sanPham.gia}"/> </span>				
 						</c:if>						
 						</div>
 						<div class="card-item__btn">
-							<a href="User/helmet/${p.key.maSP}.htm" class="btn__buy btn">MUA NGAY</a> <a
-								href="User/helmet/${p.key.maSP}.htm?linkAdd" class="btn__add-cart btn">THÊM VÀO GIỎ</a>
+							<a href="User/helmet/${p.sanPham.maSP}.htm" class="btn__buy btn">MUA NGAY</a> <a
+								href="User/helmet/${p.sanPham.maSP}.htm?linkAdd" class="btn__add-cart btn">THÊM VÀO GIỎ</a>
 						</div>
 					</div>
 				</c:forEach>
@@ -469,5 +486,51 @@
 	</header>
 	<script type="text/javascript"
 		src="<c:url value='/resource/javascript/slide.js' />"></script>
+		<script type="text/javascript">
+		
+	changeCheckBox(document.getElementById('check__brand-all'), document.getElementsByClassName('check__brand-item'));
+	changeCheckBox(document.getElementById('check__price-all'), document.getElementsByClassName('check__price-item'));
+	changeCheckBox(document.getElementById('check__type-all'), document.getElementsByClassName('check__type-item'));
+		
+		function changeCheckBox(all, list) {
+			all.onclick=function(){
+				if(all.checked==true){
+					for(var i=0; i< list.length;i++){
+						list[i].checked=false;
+					}
+				} else{
+ 					all.checked=true;
+				}
+			}
+			for(var i=0; i< list.length;i++){
+				list[i].onclick=function(){
+					if(this.checked==true){
+						var flag=true;
+						for(var j=0; j< list.length;j++){
+							if(list[j].checked==false){
+								flag=false;
+								break;
+							}
+						}
+						if(flag==false){
+							all.checked=false;
+						} else{
+							all.checked=true;
+							for(var i=0; i< list.length;i++){
+								list[i].checked=false;
+							}
+						}
+					} else{
+						for(var j=0; j< list.length;j++){
+							if(list[j].checked==true){
+								return;
+							}
+						}
+ 						all.checked=true;
+					}
+				}
+			}
+		}
+	</script>
 </body>
 </html>

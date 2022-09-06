@@ -46,9 +46,17 @@
 	</ul>
 </c:if>
 			
-<form class="fs-search">
-	<input name="name" class="fs-search__input" placeholder="Nhập tên cần tìm">
-	<button class="fs-search__link" name="btnSearch">Tìm kiếm</button>
+<form action="" class="fs-search">
+	<c:if test="${nameBill != NULL}">
+		<label>Từ:</label>
+		<input style="margin-right: 20px" type="date" id="from" name="from" value="${from}" class="fs-search__input" required="required" >
+		<label>Đến:</label>
+		<input style="margin-right: 20px" type="date" id="to" name="to" value="${to}" class="fs-search__input" required="required" >
+	</c:if>
+	<c:if test="${nameBill == NULL}">
+		<input name="name" value="${name}" class="fs-search__input" placeholder="Nhập tên cần tìm">
+	</c:if>
+	<button class="fs-search__link" name="btnSearch" ${nameBill != NULL ? 'onclick="search(event)"' : ''}>Tìm kiếm</button>
 </form>
 <style>
 .pagination{
